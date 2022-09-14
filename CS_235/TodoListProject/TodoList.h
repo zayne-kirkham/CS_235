@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "TodoListInterface.h"
 using namespace std;
 
 
 class TodoList :  public TodoListInterface{
 public:
+  // holds the file
+  vector <string> tasks;
+  
   TodoList();    // Constructor
   ~TodoList();   // Deconstructor
   
