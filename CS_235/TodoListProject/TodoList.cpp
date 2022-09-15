@@ -110,18 +110,18 @@ void TodoList::printDaysTasks(string _date){
   }
   // Checks if there are any matches
   if (index.size() > 0){
-    // checks for overflow
-    if (index[i]+1 < tasks.size()){
-      // loops through all the matches
-      for (int i = 0; i < index.size(); i++){
+    // loops through all the matches
+    for (int i = 0; i < index.size(); i++){
+      // checks for overflow
+      if (index[i]+1 < tasks.size()){
         cout << tasks[index[i]]<< endl;
         // cout << "index[i]: " << index[i] <<endl;
         // cout << "i: " << i << endl;
         cout << tasks[index[i] + 1] << endl;
       }
-    }
-    else{
-      cout << date << " has no task and is at the end of the file"<< endl;
+      else{
+        cout << date << " has no task and is at the end of the file"<< endl;
+      }
     }
   }
   else{
