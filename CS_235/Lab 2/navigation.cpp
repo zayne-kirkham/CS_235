@@ -7,18 +7,53 @@ using namespace std;
 
 
 // This function reads in the contents of the file _mapName.
-// The function can assume that the contents of the specified conform with the specs given in the README.txt file
+// The function can assume that the contents of the specified conform with the 
+// specs given in the README.txt file
 // Returns true if the file is read in successfully, false otherwise
-Navigation::readNetwork(string _mapName){
+bool Navigation::readNetwork(string _mapName){
     
     ifstream input;
     input.open(_mapName);
     if (input.is_open()){
-        num_nodes = (int) getline(input, 0);
+        // getline(input, num_nodes);
+        string sLine;
+        getline(input, sLine);
+        num_nodes = stoi(sLine);
         
-        for (int i = 1; i <num_nodes+1; i++){
-            cout << getline(input, i) << endl;
-            // tasks.push_back(line);
+        string line;
+        // Loops through each line of the network
+        for (int i = 1; i < num_nodes+1; i++){
+            getline(input, line);
+            cout << line << endl;
+            
+            
+            
+            string delimiter = "  ";
+            size_t pos = 0;
+            int token;
+            
+            // loops through each entry in the line
+            while ((pos = line.find(delimiter)) != string::npos) {
+                token = stoi(line.substr(0, pos));
+                cout << "token: " << token << endl;
+                line.erase(0, pos + delimiter.length());
+
+                // check if the link is valid
+                if (token != -1){
+                    // get primary node location
+                    int node_location = i;
+                    // get node link connection
+                    int node_link = stoi(pos);
+                    // get node link cost
+                    int temp_cost = token;
+                    // define node
+                    
+                    x = new Node(cost = temp_cost, path.push(npde));
+                    
+                    // add node to priority queue
+                    // myPriorityQueue.push(node)
+                }
+            }
         }
         // Closes the file
         input.close();
@@ -33,18 +68,21 @@ Navigation::readNetwork(string _mapName){
 }
 
 
-// This function computes and returns the least-cost path from node indexed _startInd to node indexed as _endInd
+// This function computes and returns the least-cost path from node indexed 
+// _startInd to node indexed as _endInd
 // for the map that was last read (in the readMap function).  The resulting path must be stored in an integer queue
 // with each entry in the queue denoting the next node in the path.  First front of the queue should be _startInd
 // and the back of the queue should be _endInd.
 // For example, in map1.txt, solveMap(13, 1) should return the shortest path from node 13 to node 1, which is:
 //      13, 9, 10, 7, 3, 2, 1
 // You can assume that readNetwork(_mapName) is called before this function and that a path from _startInd to _endInd exists
-Navigation::computeShortestPath(int _startInd, int _endInd){
+queue<int> Navigation::computeShortestPath(int _startInd, int _endInd){
+    queue<int> temp;
     cout << endl;
+    return temp;
 }
 
 // prints out to the console the path stored in _path
-Navigation::printPath(queue<int> _path){
+void Navigation::printPath(queue<int> _path){
     cout << endl;
 }
