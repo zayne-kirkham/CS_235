@@ -17,10 +17,16 @@ struct Node {
     }
 };
 
+struct Point{
+    int x,y;
+};
+
 class Navigation : public NavigationInterface{
 public:
-    //Define priority queue myPriorityQueue
-    priority_queue<Node, vector<Node>, Node> myPriorityQueue;
+    
+    vector<Point> Costs;   //fixme sniped from 
+    vector<vector<Point>> names;
+    
     int num_nodes;
     
     // This function reads in the contents of the file _mapName.

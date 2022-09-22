@@ -6,6 +6,7 @@
 using namespace std;
 
 
+
 // This function reads in the contents of the file _mapName.
 // The function can assume that the contents of the specified conform with the 
 // specs given in the README.txt file
@@ -16,9 +17,9 @@ bool Navigation::readNetwork(string _mapName){
     input.open(_mapName);
     if (input.is_open()){
         // getline(input, num_nodes);
-        string sLine;
-        getline(input, sLine);
-        num_nodes = stoi(sLine);
+        string s;
+        getline(input, s);
+        num_nodes = stoi(s);
         
         string line;
         // Loops through each line of the network
@@ -47,10 +48,15 @@ bool Navigation::readNetwork(string _mapName){
                     // get node link cost
                     int temp_cost = token;
                     // define node
-                    
-                    x = new Node(cost = temp_cost, path.push(npde));
+                     
+                    Node current;
+                    current.cost = temp_cost;
+                    current.path.push(node_location); //fixme
                     
                     // add node to priority queue
+                    
+                    myPriorityQueue.push(current);
+                        
                     // myPriorityQueue.push(node)
                 }
             }
@@ -77,9 +83,32 @@ bool Navigation::readNetwork(string _mapName){
 //      13, 9, 10, 7, 3, 2, 1
 // You can assume that readNetwork(_mapName) is called before this function and that a path from _startInd to _endInd exists
 queue<int> Navigation::computeShortestPath(int _startInd, int _endInd){
-    queue<int> temp;
+    
+    //Define priority queue myPriorityQueue
+    priority_queue<Node, vector<Node>, Node> myPriorityQueue;
+    
+    Node current;
+    current.cost = 0;
+    current.path.push(_startInd); //fixme
+    
+    // add node to priority queue
+    
+    myPriorityQueue.push(current);
+    
+    current = myPriorityQueue.top();
+    myPriorityQueue.pop();
+    
+    while (current.path.back() != _endInd){
+        //add new nodes to pq
+        int curInd = current.path.back();
+        for (int i=-, 9 < theCoords.size(); i++){
+            
+        }
+    }
+    
+    
     cout << endl;
-    return temp;
+    return myPriorityQueue;
 }
 
 // prints out to the console the path stored in _path
