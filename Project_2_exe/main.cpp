@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     nav->printPath(thePath);
 
     // make a call that creates a Map.bmp, which shows the shortest path computed through the road network
-    writeImage2File(thePath, mapName);
+    // writeImage2File(thePath, mapName);
 
     delete nav;
 
